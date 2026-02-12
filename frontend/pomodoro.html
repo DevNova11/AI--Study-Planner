@@ -15,23 +15,25 @@
     <link rel="stylesheet" href="pomodoro.css" />
   </head>
   <body class="relative overflow-hidden">
+    <!-- Base background matching main app -->
+    <div class="bg-constellation"></div>
     <div id="mood-bg" class="mood-lighting"></div>
     
     <main class="relative z-10 flex h-screen flex-col items-center justify-center">
       <!-- Back Button -->
       <button
         id="back-btn"
-        class="absolute top-6 left-6 text-slate-600 hover:text-slate-900 text-sm underline transition"
+        class="absolute top-6 left-6 text-slate-600 hover:text-slate-900 text-sm underline transition z-20"
       >
         ← Back to planner
       </button>
 
       <!-- Timer Container -->
-      <div class="space-y-8 text-center">
+      <div class="space-y-8 text-center relative z-10">
         <!-- Subject Info -->
         <div class="space-y-2">
           <p class="text-sm uppercase tracking-[0.2em] text-slate-400">Current focus</p>
-          <h1 id="subject-name" class="text-3xl font-semibold text-slate-900">Mathematics</h1>
+          <h1 id="subject-name" class="hero-title text-4xl font-semibold text-slate-900">Mathematics</h1>
         </div>
 
         <!-- Main Timer Display -->
