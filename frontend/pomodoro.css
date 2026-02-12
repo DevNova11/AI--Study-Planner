@@ -3,6 +3,11 @@
 body {
   background: radial-gradient(circle at top, #fff7ed 0%, #fef9f4 35%, #f8fafc 100%);
   min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode {
+  background: radial-gradient(circle at top, #0b1120 0%, #0f172a 35%, #1e293b 100%);
 }
 
 .mood-lighting {
@@ -19,10 +24,18 @@ body {
   opacity: 1;
 }
 
+.dark-mode .mood-lighting.focus {
+  background: linear-gradient(135deg, rgba(100, 150, 200, 0.1) 0%, rgba(100, 120, 200, 0.08) 50%, rgba(80, 100, 180, 0.06) 100%);
+}
+
 /* Break Mode - Soft Green overlay */
 .mood-lighting.break {
   background: linear-gradient(135deg, rgba(6, 95, 70, 0.08) 0%, rgba(16, 185, 129, 0.12) 50%, rgba(110, 231, 183, 0.1) 100%);
   opacity: 1;
+}
+
+.dark-mode .mood-lighting.break {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(110, 231, 183, 0.06) 100%);
 }
 
 /* Warning Mode - Amber overlay (last minute) */
@@ -31,10 +44,18 @@ body {
   opacity: 1;
 }
 
+.dark-mode .mood-lighting.warning {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(217, 119, 6, 0.12) 50%, rgba(252, 211, 77, 0.1) 100%);
+}
+
 /* Completion Mode - Rose overlay */
 .mood-lighting.complete {
   background: linear-gradient(135deg, rgba(131, 24, 67, 0.1) 0%, rgba(236, 72, 153, 0.12) 50%, rgba(251, 207, 232, 0.08) 100%);
   opacity: 1;
+}
+
+.dark-mode .mood-lighting.complete {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.08) 50%, rgba(251, 207, 232, 0.06) 100%);
 }
 
 /* Pulsing effect for last 10 seconds */
@@ -56,6 +77,11 @@ body {
   font-family: "Space Grotesk", system-ui, sans-serif;
   text-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
   letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.dark-mode #timer-display {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Match main app glass styling */
@@ -64,6 +90,13 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.35) !important;
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08) !important;
   backdrop-filter: blur(16px) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .glass {
+  background: rgba(30, 41, 59, 0.7) !important;
+  border: 1px solid rgba(71, 85, 105, 0.35) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Subtle text adjustments for mood states */
@@ -71,16 +104,32 @@ body {
   color: #1e3a8a;
 }
 
+.dark-mode .mood-lighting.focus ~ main #timer-display {
+  color: #93c5fd;
+}
+
 .mood-lighting.break ~ main #timer-display {
   color: #065f46;
+}
+
+.dark-mode .mood-lighting.break ~ main #timer-display {
+  color: #6ee7b7;
 }
 
 .mood-lighting.warning ~ main #timer-display {
   color: #92400e;
 }
 
+.dark-mode .mood-lighting.warning ~ main #timer-display {
+  color: #fcd34d;
+}
+
 .mood-lighting.complete ~ main #timer-display {
   color: #831843;
+}
+
+.dark-mode .mood-lighting.complete ~ main #timer-display {
+  color: #fbcfe8;
 }
 
 /* Animation for session completion */
@@ -101,10 +150,29 @@ body {
 .badge {
   background: rgba(248, 250, 252, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.4);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode .badge {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(71, 85, 105, 0.4);
 }
 
 /* Ensure main content is above mood overlay */
 main {
   position: relative;
   z-index: 10;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-color: rgba(71, 85, 105, 0.4);
+  color: #f1f5f9;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode input::placeholder {
+  color: #94a3b8;
 }

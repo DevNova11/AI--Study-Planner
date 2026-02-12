@@ -7,6 +7,19 @@
   --rose: #f472b6;
   --leaf: #22c55e;
   --night: #0b1120;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-base: #fef9f4;
+}
+
+:root.dark-mode {
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --bg-primary: #1e293b;
+  --bg-secondary: #0f172a;
+  --bg-base: #0b1120;
 }
 
 * {
@@ -15,9 +28,14 @@
 
 body {
   font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  color: var(--ink);
+  color: var(--text-primary);
   background: radial-gradient(circle at top, #fff7ed 0%, #fef9f4 35%, #f8fafc 100%);
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background: radial-gradient(circle at top, #0b1120 0%, #0f172a 35%, #1e293b 100%);
 }
 
 .hero-title {
@@ -39,11 +57,24 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.35);
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(16px);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .glass {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(71, 85, 105, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
 }
 
 .badge {
   background: rgba(248, 250, 252, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.4);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode .badge {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(71, 85, 105, 0.4);
 }
 
 .animate-rise {
@@ -65,11 +96,51 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.4);
   background: #ffffff;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .plan-card {
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  background: #1e293b;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  color: #f1f5f9;
 }
 
 .session-pill {
   border: 1px solid rgba(148, 163, 184, 0.4);
   background: rgba(248, 250, 252, 0.8);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode .session-pill {
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-color: rgba(71, 85, 105, 0.4);
+  color: #f1f5f9;
+}
+
+.dark-mode input::placeholder {
+  color: #94a3b8;
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+  border-color: rgba(100, 116, 139, 0.6);
+}
+
+#dark-mode-toggle {
+  transition: transform 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+  transform: rotate(20deg);
 }
 
 @media (max-width: 768px) {
