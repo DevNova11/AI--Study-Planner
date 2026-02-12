@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="relative">
+    <div class="bg-constellation"></div>
+    <main class="relative mx-auto max-w-6xl px-6 py-10">
+      <header class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-3 rounded-full bg-white/80 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-500 shadow">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            Intelligent study ritual
+          </div>
+          <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl">
+            Turn scattered tasks into a calm, AI-guided study flow.
+          </h1>
+          <p class="max-w-2xl text-lg text-slate-600">
+            Draft a plan that respects your energy. The planner balances subjects across your week, leaving space to breathe.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="badge rounded-full px-4 py-2 text-xs uppercase tracking-widest text-slate-500">Calendar aware</span>
+            <span class="badge rounded-full px-4 py-2 text-xs uppercase tracking-widest text-slate-500">Focus mode</span>
+            <span class="badge rounded-full px-4 py-2 text-xs uppercase tracking-widest text-slate-500">Mood lighting</span>
+          </div>
+        </div>
+        <div class="glass w-full rounded-3xl p-6 lg:max-w-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Status</p>
+              <h2 class="text-xl font-semibold">Planner Engine</h2>
+            </div>
+            <span id="status-tag" class="rounded-full bg-emerald-100 px-3 py-1 text-xs text-emerald-700">Ready</span>
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+            <span id="account-status">Not signed in</span>
+            <div class="flex items-center gap-3">
+              <a href="/login" class="underline">Sign in</a>
+              <button id="logout-button" class="hidden underline" type="button">Log out</button>
+            </div>
+          </div>
+          <div class="mt-6 space-y-3 text-sm text-slate-500">
+            <p>1. Add subjects and hours.</p>
+            <p>2. Pick a date range and daily focus hours.</p>
+            <p>3. Generate a balanced plan.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="mt-12 grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+        <form id="plan-form" class="glass space-y-6 rounded-3xl p-8 animate-rise">
+          <div>
+            <label class="text-xs uppercase tracking-[0.2em] text-slate-400 flex items-center justify-between">
+              <span>Subjects to study</span>
+              <button type="button" id="add-subject" class="text-xs text-sky-600 hover:text-sky-700 underline">+ Add subject</button>
+            </label>
+            <div id="subjects-list" class="mt-4 space-y-3">
+              <!-- subjects will be added here dynamically -->
+            </div>
+            <div id="empty-hint" class="mt-4 text-sm text-slate-400 text-center">No subjects yet. Click "+ Add subject" to start.</div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="text-xs uppercase tracking-[0.2em] text-slate-400">Start date</label>
+              <input
+                id="start-date"
+                type="date"
+                class="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm shadow-sm focus:border-slate-400 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label class="text-xs uppercase tracking-[0.2em] text-slate-400">End date</label>
+              <input
+                id="end-date"
+                type="date"
+                class="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm shadow-sm focus:border-slate-400 focus:outline-none"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-[0.2em] text-slate-400">Hours per day</label>
+            <input
+              id="hours-per-day"
+              type="number"
+              min="1"
+              step="0.5"
+              value="2"
+              class="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm shadow-sm focus:border-slate-400 focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:translate-y-[-1px] hover:bg-slate-800"
+          >
+            Generate plan
+          </button>
+        </form>
+
+        <div class="space-y-6">
+          <div class="glass rounded-3xl p-6">
+            <h2 class="text-xl font-semibold">Weekly focus blueprint</h2>
+            <p class="mt-2 text-sm text-slate-500">
+              This plan balances each subject across your available days. You can re-run anytime.
+            </p>
+          </div>
+          <div id="plan-result" class="space-y-4"></div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
