@@ -1,0 +1,126 @@
+/* Mood Lighting System */
+
+.mood-lighting {
+  position: fixed;
+  inset: 0;
+  transition: background 2s ease-in-out, box-shadow 2s ease-in-out;
+  z-index: 0;
+}
+
+/* Focus Mode - Deep Blue */
+.mood-lighting.focus {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a6f 50%, #064e7f 100%);
+  box-shadow: inset 0 0 100px rgba(15, 23, 42, 0.8);
+}
+
+/* Break Mode - Warm Green */
+.mood-lighting.break {
+  background: linear-gradient(135deg, #065f46 0%, #10b981 50%, #6ee7b7 100%);
+  box-shadow: inset 0 0 100px rgba(6, 95, 70, 0.6);
+}
+
+/* Warning Mode - Amber (last minute) */
+.mood-lighting.warning {
+  background: linear-gradient(135deg, #78350f 0%, #d97706 50%, #fcd34d 100%);
+  box-shadow: inset 0 0 100px rgba(120, 53, 15, 0.7);
+}
+
+/* Completion Mode - Rose */
+.mood-lighting.complete {
+  background: linear-gradient(135deg, #831843 0%, #ec4899 50%, #fbcfe8 100%);
+  box-shadow: inset 0 0 100px rgba(131, 24, 67, 0.6);
+}
+
+/* Pulsing effect for last 10 seconds */
+@keyframes pulse-warning {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.mood-lighting.pulse-warning {
+  animation: pulse-warning 0.5s ease-in-out infinite;
+}
+
+/* Timer display styling */
+#timer-display {
+  font-family: "Space Mono", monospace;
+  text-shadow: 0 4px 20px rgba(15, 23, 42, 0.3);
+  letter-spacing: 0.1em;
+}
+
+/* Glass effect for dark mood */
+.glass {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.mood-lighting.focus ~ main .glass {
+  background: rgba(15, 23, 42, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.mood-lighting.break ~ main .glass {
+  background: rgba(6, 95, 70, 0.05) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.mood-lighting.warning ~ main .glass {
+  background: rgba(120, 53, 15, 0.08) !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+/* Text color adjustments based on mood */
+.mood-lighting.focus ~ main {
+  color: #f8fafc;
+}
+
+.mood-lighting.focus ~ main h1,
+.mood-lighting.focus ~ main #timer-display,
+.mood-lighting.focus ~ main button {
+  color: #f8fafc;
+}
+
+.mood-lighting.focus ~ main button {
+  background-color: rgba(248, 250, 252, 0.1);
+  border-color: rgba(248, 250, 252, 0.2);
+}
+
+.mood-lighting.focus ~ main button:hover {
+  background-color: rgba(248, 250, 252, 0.2);
+}
+
+.mood-lighting.break ~ main h1,
+.mood-lighting.break ~ main #timer-display {
+  color: #065f46;
+}
+
+.mood-lighting.warning ~ main h1,
+.mood-lighting.warning ~ main #timer-display {
+  color: #78350f;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 2s ease-in-out;
+}
+
+#timer-display {
+  transition: none;
+}
+
+/* Animation for session completion */
+@keyframes bounce-success {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.timer-complete #timer-display {
+  animation: bounce-success 0.6s ease-in-out;
+}

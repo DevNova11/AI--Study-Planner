@@ -115,17 +115,29 @@ const renderPlan = (payload) => {
       `;
 
       const sessions = document.createElement("div");
-      sessions.className = "flex flex-wrap gap-2";
+      sessions.className = "flex flex-wrap gap-2 mb-4";
 
       day.sessions.forEach((session) => {
         const pill = document.createElement("span");
-        pill.className = "session-pill rounded-full px-3 py-1 text-sm";
+        pill.className = "session-pill rounded-full px-3 py-1 text-sm cursor-pointer hover:shadow-md transition";
         pill.textContent = `${session.subject} ${session.hours}h`;
+        pill.addEventListener("click", () => {
+          window.location.href = `/pomodoro.html?subject=${encodeURIComponent(session.subject)}`;
+        });
         sessions.appendChild(pill);
+      });
+
+      const focusBtn = document.createElement("button");
+      focusBtn.className = "w-full mt-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white px-3 py-2 text-sm font-semibold transition";
+      focusBtn.textContent = "Start focus session";
+      focusBtn.addEventListener("click", () => {
+        const firstSubject = day.sessions[0]?.subject || "Study";
+        window.location.href = `/pomodoro.html?subject=${encodeURIComponent(firstSubject)}`;
       });
 
       dayCard.appendChild(header);
       dayCard.appendChild(sessions);
+      dayCard.appendChild(focusBtn);
     }
     
     result.appendChild(dayCard);

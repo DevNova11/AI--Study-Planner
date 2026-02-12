@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Focus Session</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pomodoro.css" />
+  </head>
+  <body class="relative overflow-hidden">
+    <div id="mood-bg" class="mood-lighting"></div>
+    
+    <main class="relative z-10 flex h-screen flex-col items-center justify-center">
+      <!-- Back Button -->
+      <button
+        id="back-btn"
+        class="absolute top-6 left-6 text-slate-600 hover:text-slate-900 text-sm underline transition"
+      >
+        ← Back to planner
+      </button>
+
+      <!-- Timer Container -->
+      <div class="space-y-8 text-center">
+        <!-- Subject Info -->
+        <div class="space-y-2">
+          <p class="text-sm uppercase tracking-[0.2em] text-slate-400">Current focus</p>
+          <h1 id="subject-name" class="text-3xl font-semibold text-slate-900">Mathematics</h1>
+        </div>
+
+        <!-- Main Timer Display -->
+        <div class="space-y-4">
+          <div id="timer-display" class="text-9xl font-bold tabular-nums text-slate-900">
+            25:00
+          </div>
+          <p id="session-type" class="text-xl text-slate-500">Focus • Work session</p>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="flex gap-4 justify-center">
+          <button
+            id="start-btn"
+            class="rounded-2xl bg-slate-900 px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:translate-y-[-1px] hover:bg-slate-800"
+          >
+            Start session
+          </button>
+          <button
+            id="pause-btn"
+            class="hidden rounded-2xl border border-slate-200 px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-900 transition hover:bg-slate-50"
+          >
+            Pause
+          </button>
+          <button
+            id="skip-btn"
+            class="rounded-2xl border border-slate-200 px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-900 transition hover:bg-slate-50"
+          >
+            Skip
+          </button>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="glass rounded-3xl p-6 max-w-sm space-y-4">
+          <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">Session settings</h3>
+          
+          <div>
+            <label class="text-xs uppercase tracking-[0.15em] text-slate-400">Work duration (minutes)</label>
+            <input
+              id="work-duration"
+              type="number"
+              min="1"
+              max="90"
+              value="25"
+              class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 p-2 text-sm"
+            />
+          </div>
+
+          <div>
+            <label class="text-xs uppercase tracking-[0.15em] text-slate-400">Break duration (minutes)</label>
+            <input
+              id="break-duration"
+              min="1"
+              max="30"
+              type="number"
+              value="5"
+              class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 p-2 text-sm"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="text-xs uppercase tracking-[0.15em] text-slate-400">Ambient sound</label>
+              <button
+                id="sound-toggle"
+                class="text-xs text-sky-600 hover:text-sky-700 underline"
+              >
+                Volume
+              </button>
+            </div>
+            <div id="sound-panel" class="hidden space-y-2">
+              <select
+                id="sound-type"
+                class="w-full rounded-xl border border-slate-200 bg-white/80 p-2 text-sm"
+              >
+                <option value="none">None</option>
+                <option value="rain">Rain</option>
+                <option value="forest">Forest</option>
+                <option value="ocean">Ocean waves</option>
+                <option value="coffee">Coffee shop</option>
+              </select>
+              <input
+                id="sound-volume"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                class="w-full"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs uppercase tracking-[0.15em] text-slate-400 flex items-center gap-2">
+              <input
+                id="notifications-enabled"
+                type="checkbox"
+                checked
+                class="rounded"
+              />
+              Desktop notifications
+            </label>
+          </div>
+        </div>
+
+        <!-- Session Counter -->
+        <div class="text-sm text-slate-500">
+          Sessions completed today:
+          <span id="sessions-count" class="font-semibold text-slate-900">0</span>
+        </div>
+      </div>
+    </main>
+
+    <script src="pomodoro.js"></script>
+  </body>
+</html>
